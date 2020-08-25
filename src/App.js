@@ -13,7 +13,7 @@ function App() {
       question: quizQuestions[0].question,
       answerOptions: quizQuestions[0].answers
     })
-  },[])
+  },[]);
 
   const initialState = {
     counter: 0,
@@ -25,6 +25,49 @@ function App() {
     result: ''
   }
 
+  const setUserAnswer = (answer) => {
+    setState({
+      ...state,
+      answersCount: {
+        ...state.answersCount,
+        [answer]: (state.answersCount[answer] || 0) + 1
+      },
+      answer: answer
+    })
+  }
+
+  const setNextQuestion = () => {
+    const counter = state.counter + 1;
+    const questionId = state.questionId + 1;
+    setState({
+      ...state,
+      counter: counter,
+      questionId: questionId,
+      question: quizQuestions[counter].question,
+      answerOptions: quizQuestions[counter].answers,
+      answer: ''
+    })
+  }
+
+  const handleAnswerSelected = (event) => {
+    setUserAnswer(event.currentTarget.value);
+
+    if (state.questionId < quizQuestions.length) {
+      setTimeout(() => setNextQuestion(), 300);
+    } else {
+      setTimeout(() => setResults(getResults()), 300);
+    }
+  }
+
+  const getResults = () => {
+    const answersCount = state.answersCount;
+    const answersCountKeys = Object.keys(answersCount);
+    const answersCountValues = answersCountKeys.map((key) => answersCount[key]);
+    const maxAnswerCount = Math.max.apply(null, answersCountValues);
+
+    return answersCountKeys.filter((key) => answersCount[key] === maxAnswerCount);
+  }
+
   const [state, setState] = useState(initialState)
   return (
     <div>
@@ -34,7 +77,7 @@ function App() {
         questionId={state.questionId}
         question={state.question}
         questionTotal={quizQuestions.length}
-        onAnswerSelected="1"
+        onAnswerSelected={handleAnswerSelected}
       />
     </div>
   );
