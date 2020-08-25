@@ -35,22 +35,24 @@ function App() {
       },
       answer: answer
     })
+    console.log(answer);
   }
 
   const setNextQuestion = () => {
     const counter = state.counter + 1;
     const questionId = state.questionId + 1;
-    setState({
-      ...state,
+    setState(prevState => { return {
+      ...prevState,
       counter: counter,
       questionId: questionId,
       question: quizQuestions[counter].question,
       answerOptions: quizQuestions[counter].answers,
       answer: ''
-    })
+    }})
   }
 
   const handleAnswerSelected = (event) => {
+
     setUserAnswer(event.currentTarget.value);
 
     if (state.questionId < quizQuestions.length) {
