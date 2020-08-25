@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Question from './components/Question';
+import quizQuestions from './api/quizQuestions';
+import Quiz from './components/Quiz';
 
 function App() {
+
+  useEffect(() => {
+
+    setState({
+      ...state,
+      questsion: quizQuestions[0].question,
+      answerOptions: quizQuestions[0].answers
+    })
+  },[])
 
   const initialState = {
     counter: 0,
@@ -17,7 +28,7 @@ function App() {
   const [state, setState] = useState(initialState)
   return (
     <div>
-      <Question content="What is your favourite food?"/>
+
     </div>
   );
 }
