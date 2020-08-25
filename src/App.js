@@ -10,7 +10,7 @@ function App() {
 
     setState({
       ...state,
-      questsion: quizQuestions[0].question,
+      question: quizQuestions[0].question,
       answerOptions: quizQuestions[0].answers
     })
   },[])
@@ -28,7 +28,14 @@ function App() {
   const [state, setState] = useState(initialState)
   return (
     <div>
-
+      <Quiz
+        answer={state.answer}
+        answerOptions={state.answerOptions}
+        questionId={state.questionId}
+        question={state.question}
+        questionTotal={quizQuestions.length}
+        onAnswerSelected="1"
+      />
     </div>
   );
 }
