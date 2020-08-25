@@ -3,6 +3,7 @@ import './App.css';
 import Question from './components/Question';
 import quizQuestions from './api/quizQuestions';
 import Quiz from './components/Quiz';
+import Result from './components/Result';
 
 function App() {
 
@@ -68,9 +69,17 @@ function App() {
     return answersCountKeys.filter((key) => answersCount[key] === maxAnswerCount);
   }
 
-  const [state, setState] = useState(initialState)
-  return (
-    <div>
+  const setResults = (result) => {
+    if (result.length === 1) {
+      setState({ result: result[0] })
+    } else {
+      setState({ result: 'Undetermined'})
+    }
+  }
+
+  const renderQuiz = () => {
+    return(
+      <div>
       <Quiz
         answer={state.answer}
         answerOptions={state.answerOptions}
@@ -80,6 +89,22 @@ function App() {
         onAnswerSelected={handleAnswerSelected}
       />
     </div>
+    )
+  }
+
+  const renderResult = () => {
+    return(
+      <Result quizResult={state.result} />
+    )
+  }
+
+  const [state, setState] = useState(initialState)
+
+  return (
+    <div>
+      {state.result ? renderResult() : renderQuiz()}
+    </div>
+    
   );
 }
 
