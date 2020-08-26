@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Question from './components/Question';
 import quizQuestions from './api/quizQuestions';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
+import Header from './components/Header';
 
 function App() {
 
@@ -104,6 +104,7 @@ function App() {
 
   return (
     <div>
+      <Header/>
       {state.result ? renderResult() : renderQuiz()}
     </div>
     
