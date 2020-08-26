@@ -103,7 +103,7 @@ function App() {
   const [state, setState] = useState(initialState)
 
   return (
-    <div>
+    <div className="app">
       <Header/>
       {state.result ? renderResult() : renderQuiz()}
     </div>

@@ -12,10 +12,23 @@ code {
     monospace;
 }
 
+.app {
+  background-color: #DCDCDC;
+  height: 100vh;
+}
+
 .header {
   padding: 20px;
   text-align: center;
   background: #000000;
   color: white;
   font-size: 30px;
+}
+
+.quiz {
+  margin: 80px;
+  padding: 10px;
+  border-style: solid;
+  border-width: thin;
+  background-color: #f8f8ff;
 }
