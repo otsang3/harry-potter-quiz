@@ -35,7 +35,6 @@ function App() {
       },
       answer: answer
     })
-    console.log(answer);
   }
 
   const setNextQuestion = () => {

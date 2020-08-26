@@ -25,10 +25,14 @@ code {
   font-size: 30px;
 }
 
-.quiz {
+.quiz, .result {
   margin: 80px;
   padding: 10px;
   border-style: solid;
   border-width: thin;
-  background-color: #f8f8ff;
+  background-color: #FFFFFF;
+}
+
+.result {
+  text-align: center;
 }
