@@ -7,15 +7,6 @@ import Header from './components/Header';
 
 function App() {
 
-  useEffect(() => {
-
-    setState({
-      ...state,
-      question: quizQuestions[0].question,
-      answerOptions: quizQuestions[0].answers
-    })
-  },[]);
-
   const initialState = {
     counter: 0,
     questionId: 1,
@@ -25,6 +16,17 @@ function App() {
     answersCount: {},
     result: ''
   }
+
+  const [state, setState] = useState(initialState)
+
+  useEffect(() => {
+
+    setState({
+      ...state,
+      question: quizQuestions[0].question,
+      answerOptions: quizQuestions[0].answers
+    })
+  },[]);
 
   const setUserAnswer = (answer) => {
     setState({
@@ -59,6 +61,7 @@ function App() {
     } else {
       setTimeout(() => setResults(getResults()), 300);
     }
+
   }
 
   const getResults = () => {
@@ -71,11 +74,9 @@ function App() {
   }
 
   const setResults = (result) => {
-    if (result.length === 1) {
-      setState({ result: result[0] })
-    } else {
-      setState({ result: 'Undetermined'})
-    }
+
+    setState({ result: result[0]})
+
   }
 
   const renderQuiz = () => {
@@ -98,8 +99,6 @@ function App() {
       <Result quizResult={state.result} />
     )
   }
-
-  const [state, setState] = useState(initialState)
 
   return (
     <div className="app">

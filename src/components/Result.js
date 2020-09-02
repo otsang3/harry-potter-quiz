@@ -18,13 +18,15 @@ function Result(props) {
         case "Ravenclaw":
             image = "Ravenclaw.jpg";
             break;
+        default:
+            break;
     }
 
     console.log(image);
 
     return(
         <div className="result">
-            <p>You would be an excellent fit at <strong>{props.quizResult}</strong>!</p>
+            <p>You would be an excellent fit in <strong>{props.quizResult}</strong>!</p>
             <img src={require('../images/' + image)} width="100" height="100"/>
         </div>
     )
